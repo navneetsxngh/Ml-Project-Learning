@@ -3,24 +3,7 @@ from typing import List
 
 
 HYPEN_E_DOT = '-e .'
-# Read requirements.txt  Option 1
-def parse_requirements(filename):
-    '''
-    Docstring for parse_requirements
-
-    :param filename: Description
-    :type filename: str
-    :return: Description
-    :rtype: List[str]
-    '''
-    with open(filename, "r", encoding="utf-8") as f:
-        return [
-            line.strip()
-            for line in f
-            if line.strip() and not line.startswith("#")
-        ]
-
-# Read requirements.txt Option 2
+# Read requirements.txt 
 def get_requirements(file_path: str) -> List[str]:
     """
     This function reads requirements.txt and returns a clean list of packages.
