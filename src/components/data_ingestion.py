@@ -6,14 +6,14 @@ import sys
 from src.exception import CustomException
 from src.logger import logging
 
-# Data handling
 import pandas as pd
-
-# Sklearn utility to split dataset
 from sklearn.model_selection import train_test_split
 
 # Used to create configuration class with less boilerplate
 from dataclasses import dataclass
+
+from src.components.data_transformation import DataTransformationConfig
+from src.components.data_transformation import DataTransformation
 
 
 # =========================
@@ -73,9 +73,7 @@ class DataIngestion:
             # Ensures folder exists before saving files.
             # exist_ok=True prevents error if folder already exists.
             os.makedirs(
-                os.path.dirname(self.ingestion_config.train_data_path),
-                exist_ok=True
-            )
+                os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
 
 
             # =========================
@@ -133,4 +131,7 @@ class DataIngestion:
 
 if __name__ == '__main__':
     obj = DataIngestion()
-    obj.initiate_data_ingestion()
+    train_data, test_data, raw_data = obj.initiate_data_ingestion()
+
+    data_transformation = DataTransformation()
+    data_transformation.initiate_data_transformation(train_data, test_data)
