@@ -58,7 +58,7 @@ class DataTransformation:
             ])
             return preprocessor
         except Exception as e:
-            return CustomException(e, sys)
+            raise CustomException(e, sys)
     
 
     def initiate_data_transformation(self, train_path, test_path):
